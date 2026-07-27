@@ -1,0 +1,12 @@
+# Optional application configuration template.
+# Keep secrets in environment variables or a secret manager instead.
+app:
+  name: python-ai
+  env: development
+  debug: false
+
+logging:
+  level: INFO
+
+# database:
+#   url: ${DATABASE_URL}
