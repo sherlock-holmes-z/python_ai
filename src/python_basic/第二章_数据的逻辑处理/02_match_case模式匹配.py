@@ -15,5 +15,5 @@ my_list = ["get", "baidu.com", "google.com"]
 match my_list:
     case ["get", url]:  # 匹配两个元素的list,且第一个元素为get
         print(url)
-    case _ if len(my_list) == 3:  # 匹配后进行if判断
+    case _ if len(my_list) == 3:  # 满足匹配后进行if判断
         print("error")
