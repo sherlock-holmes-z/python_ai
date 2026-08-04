@@ -6,6 +6,8 @@ lambda 参数列表: 返回值表达式
 lambda 一定会返回表达式的计算结果；如果表达式结果为 None，则返回 None
 """
 
+from collections.abc import Callable, Iterable
+
 # 不推荐这样定义，通常是作为高阶函数的参数进行定义
 out_line = lambda: print("--------")  # noqa: E731 - 教学示例：演示匿名函数赋值
 out_line()
@@ -26,4 +28,31 @@ result = process_text(
     method=lambda text: text.strip().upper(),
 )
 
+print(result)
+
+
+# 定义一个可以使用lambda的函数
+def process_data(data: Iterable[int], method1: Callable[[Iterable[int]], tuple[int, int]]) -> int:
+    n1, n2 = method1(data)
+    return n1 + n2
+
+
+result = process_data([1, 2, 3, 4, 5], method1=lambda values: (max(values), min(values)))
+print(result)
+
+
+print("===函数的递归==")
+
+
+def factorial_recursive(number: int) -> int:
+    if number < 0:
+        raise ValueError("number 不能为负数")
+
+    if number <= 1:
+        return 1
+
+    return number * factorial_recursive(number - 1)
+
+
+result = factorial_recursive(5)
 print(result)

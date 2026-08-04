@@ -1,5 +1,6 @@
 """参数"""
 
+import copy
 from collections.abc import Callable
 
 print("======传参方式========")
@@ -28,6 +29,39 @@ def method_2(name, age, height, sex="男", hobby="lol") -> None:
 
 
 method_2("zhangsan", height=1.80, age=30, hobby="cf")
+
+
+# 默认参数不能使用可变对象，因为默认参数只会在函数定义时创建一次，后续重复使用会有问题
+def add_item(item: int, items: list[int] = []) -> list[int]:
+    items.append(item)
+    return items
+
+
+print(add_item(1))  # [1]
+print(add_item(2))  # [1, 2]，而不是预期的 [2]
+print(add_item(3))  # [1, 2, 3]
+
+
+# 函数的操作会影响外部传入的可变参数
+def add_item2(
+    item: int,
+    items: list[int] | None = None,  # 可变对象通常使用None作为默认值，再在函数内部创建
+) -> list[int]:
+    if items is None:
+        items = []
+
+    items.append(item)
+    return items
+
+
+# 函数的操作不会影响外部传入的可变参数，函数内使用可变参数副本进行操作
+def add_item3(
+    item: int,
+    items: list[int] | None = None,
+) -> list[int]:
+    result = [] if items is None else items.copy()  # 如果希望函数不改变传入的列表，copy()或copy.deepcopy(items)
+    result.append(item)
+    return result
 
 
 print("=======不定长参数=======")
