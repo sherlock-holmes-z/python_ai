@@ -8,6 +8,9 @@ age = 21
 
 height = 1.75
 
+# 常量（使用大写，约定不修改（但并没有强制））
+HAPPY = 'happy'
+SAD = 'sad'
 
 def greet():
     print("你好")
