@@ -55,7 +55,7 @@ if __name__ == "__main__":
     print(student)
 
     edu_management = EduManagement()
-    student2 = Student('lisi',20,11,12,13)
+    student2 = Student("lisi", 20, 11, 12, 13)
     edu_management.add_stu(student)
     edu_management.add_stu(student2)
 

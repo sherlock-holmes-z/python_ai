@@ -29,6 +29,7 @@ class Person:
 def eat():
     print("吃饭")
 
+
 p = Person("张三")
 p.eat = eat  # 添加普通方法
 p.eat()  # 吃饭
