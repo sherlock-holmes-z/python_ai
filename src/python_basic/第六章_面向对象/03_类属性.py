@@ -19,3 +19,16 @@ print(car1.wheels)  # 实例对象.属性，会先找实例属性，没有再找
 
 Car.wheels = 10  # 真正修改类属性
 print(Car.wheels)
+
+
+class Person:
+    def __init__(self, name=None):
+        self.name = name
+
+
+def eat():
+    print("吃饭")
+
+p = Person("张三")
+p.eat = eat  # 添加普通方法
+p.eat()  # 吃饭
