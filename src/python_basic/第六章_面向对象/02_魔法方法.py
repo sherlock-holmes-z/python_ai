@@ -5,19 +5,14 @@ class Car:
         self.count = count
         self.price = price
 
-    # 定义实例方法
+    # 定义实例方法,参数self
     def total_price(self):
         return self.price * self.count
 
-    # 定义类方法，不需要创建对象，类名直接调用
+    # 定义类方法，不需要创建对象，类名直接调用,参数clas
     @classmethod
     def car_info(cls):
         print("this is car class method")
-
-    # 静态方法
-    @staticmethod
-    def car_statistics():
-        print("this is car statistics method")
 
     # 魔法方法
     # 重写toString方法
@@ -43,6 +38,3 @@ print(f"lt:{car < car2}")  # 执行__lt__比较
 print(car.total_price())
 
 Car.car_info()
-
-car.car_statistics()
-Car.car_statistics()

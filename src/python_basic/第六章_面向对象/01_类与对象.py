@@ -16,7 +16,7 @@ class Dog:
         self.name = name
         self.age = age
 
-    # 定义在类外的叫函数，定义在类中函数叫方法
+    # 定义在类外的叫函数，定义在类中函数叫方法，参数包含self
     def eat(self) -> str:
         return self.name + " eat boom"
 
