@@ -12,8 +12,8 @@ class MessageSender(ABC):
     def send(self, content: str) -> None:
         """子类必须实现发送逻辑。"""
 
-    def speak(self):
-        print("hello")
+    def speak(self) -> None:
+        print("hello ", self.__class__.__name__)
 
 
 # 子类必须实现抽象方法，否则无法创建对象
