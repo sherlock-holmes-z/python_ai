@@ -31,7 +31,8 @@ class Add:
 
 # 实现__call__的对象
 operation3: Callable[[int, int], int] = Add()
-print(operation3(10,20))
+print(operation3(10, 20))
+
 
 class User:
     def __init__(self, name: str):

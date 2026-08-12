@@ -15,14 +15,14 @@ def show_info(*args, **kwargs):
     print(kwargs)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a, b = get_info()
     print(a, b)  # 返回值解包
     print(get_info())  # 返回元祖
 
-    show_info(1, 1, 1, name='zhangsan', age=18)
-    show_info([2, 2], name='lisi')  # 位置参数不会自动解包，整个list会被认为是元祖中一个元素
-    show_info(*[3, 3], name='lisi')  # 主动解包传入位置参数
+    show_info(1, 1, 1, name="zhangsan", age=18)
+    show_info([2, 2], name="lisi")  # 位置参数不会自动解包，整个list会被认为是元祖中一个元素
+    show_info(*[3, 3], name="lisi")  # 主动解包传入位置参数
 
-    person = {'name': 'lisi', 'age': 18}
+    person = {"name": "lisi", "age": 18}
     show_info(**person)  # 关键字入参时要解包，不然会被认为是位置参数的一个元祖
