@@ -35,3 +35,21 @@ class Person2:
 person2 = Person2("zhangsan", 19, 181, 80.0)
 for p in person2.get_fields():
     print(p)
+
+
+# yield from适合组合加工，分段产生数据
+class Person3:
+    def __init__(self, name, age, height, weight):
+        self.name = name
+        self.age = age
+        self.height = height
+        self.weight = weight
+
+    def get_fields(self):
+        yield from iter(("第一段", self.name, self.age))
+        yield from iter(("第二段", self.height, self.weight))
+
+
+person3 = Person3("33", 33, 33, 33.0)
+for p in person3.get_fields():
+    print(p)
