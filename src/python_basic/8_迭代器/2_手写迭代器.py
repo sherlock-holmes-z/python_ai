@@ -17,40 +17,46 @@ for p in iter(person):
     print(p)
 
 
-# yield作用：产出一个值 + 暂停当前位置 + 下次从这里继续。（惰性遍历）
-class Person2:
-    def __init__(self, name, age, height, weight):
-        self.name = name
-        self.age = age
-        self.height = height
-        self.weight = weight
+class Fibo:
+    def __init__(self, total):
+        self.total = total
+        self.i = 0
+        self.a = 1
+        self.b = 1
 
-    def get_fields(self):
-        yield self.name
-        yield self.age
-        yield self.height
-        yield self.weight
+    def __iter__(self):
+        return self
 
-
-person2 = Person2("zhangsan", 19, 181, 80.0)
-for p in person2.get_fields():
-    print(p)  # 遍历到哪条数据，哪条数据才会被加载进内存
-
-
-# yield from适合组合加工，将分段产生的数据合并为一个新的生成器
-# （比直接iter()的优势是惰性遍历，只有迭代到的分段数据才会加载进内存）
-class Person3:
-    def __init__(self, name, age, height, weight):
-        self.name = name
-        self.age = age
-        self.height = height
-        self.weight = weight
-
-    def get_fields(self):
-        yield from ("第一段", self.name, self.age)
-        yield from ("第二段", self.height, self.weight)
+    def __next__(self):
+        if self.i >= self.total:
+            raise StopIteration
+        elif self.i < 2:
+            result = 1
+        else:
+            result = self.a + self.b
+            self.a = self.b
+            self.b = result
+        self.i += 1
+        return result  # py中只要变量在执行过程中创建，就可以在后续被使用（上面的if else中必定会定义result）
 
 
-person3 = Person3("33", 33, 33, 33.0)
-for p in person3.get_fields():
-    print(p)
+f = Fibo(10)  # 不使用时，迭代器中的数据不会生成，不占用内存，惰性按需计算
+for n in f:
+    print(n)
+
+
+# 不使用迭代器，直接将所有数据计算加载进内存
+def fibo_2(total):
+    if total == 1:
+        result = [1]
+    elif total == 2:
+        result = [1, 1]
+    elif total > 2:
+        result = [1, 1]
+        for i in range(2, total):
+            result.append(result[-1] + result[-2])
+    return result
+
+
+for n in fibo_2(10):
+    print(n)
