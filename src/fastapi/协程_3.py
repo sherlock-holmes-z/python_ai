@@ -23,7 +23,7 @@ async def main():
     #  await 让当前协程等待这组任务完成
     #  asyncio.gather() 把多个任务组合成一个全部完成才结束的等待对象，并按传入顺序收集它们的返回值
     result = await asyncio.gather(task_a, task_b)  # 主线程等待AB执行完毕，并接收返回值
-
+    print('=============任务执行完成，输出返回值===========')
     # 所有任务的返回值都会在一个list里
     print(result)
 
