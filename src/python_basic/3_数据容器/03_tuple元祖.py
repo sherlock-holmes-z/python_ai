@@ -27,7 +27,7 @@ skills = ("Python", "Java")
 # 元组不可变，指的是元组保存的引用不能改变。如果里面放了列表，列表自身仍然可以修改：
 data = ("张三", ["Python", "Java"])
 data[1].append("SQL")
-# data[1] = [2] # 但不能让data[1]指向另一个列表
+# file[1] = [2] # 但不能让data[1]指向另一个列表
 print(data)
 
 print("=========遍历与成员判断===========")

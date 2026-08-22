@@ -95,16 +95,16 @@ print(new_numbers_set)
 print("==========嵌套字典==========")
 response = {
     "code": 200,
-    "data": {
+    "file": {
         "user": {
             "id": 1,
             "name": "张三",
         }
     },
 }
-print(response["data"]["user"]["name"])  # 如果其中一个key不存在，就会报错
+print(response["file"]["user"]["name"])  # 如果其中一个key不存在，就会报错
 # 层级和结构不确定时，需要逐层校验
-data = response.get("data", {})
+data = response.get("file", {})
 user = data.get("user", {})
 name = user.get("name2")
 print(name)
