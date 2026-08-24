@@ -6,12 +6,13 @@ import aiohttp
 
 async def download_file(session, url):
     print(f"开始下载：{url}")
-    response = await session.get(url)
-    content = await response.read()
-    with open(url[-10:] + ".jpg", "wb") as f:
-        f.write(content)
+    async with session.get(url) as response:
+        response.raise_for_status()  # 检查下载地址是否异常
+        content = await response.read()
+        # 注意：这里的写入仍然是同步，只有上面的下载await是异步
+        with open(url[-10:] + ".jpg", "wb") as f:
+            f.write(content)
     print(f"下载结束：{url}")
-    await response.release()
 
 
 async def main():
