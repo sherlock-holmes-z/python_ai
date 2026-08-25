@@ -28,6 +28,7 @@ python-ai/
 ├── .gitignore
 ├── .pre-commit-config.yaml
 ├── .python-version
+├── environment.yml
 ├── pyproject.toml
 └── README.md
 ```
@@ -82,6 +83,10 @@ Python 项目的核心配置文件，通常集中配置：
 ### `.python-version`
 
 为 pyenv、部分 IDE 或版本管理工具指定默认 Python 版本。若团队使用 uv、Poetry 或 Conda，也可以把版本约束同步到对应配置中。
+
+### `environment.yml`
+
+定义可跨电脑创建的 Conda 环境入口，包括环境名、Python 3.12 和 pip 安装入口。Conda 负责解释器，pip 根据 `pyproject.toml` 安装项目依赖，避免重复维护两套业务依赖清单。默认安装 FastAPI、现有示例使用的 aiohttp/NumPy 与开发工具，其他 AI/数据库依赖通过 optional dependencies 按学习阶段启用。
 
 ### `configs/*.yaml` 或 `*.toml`
 

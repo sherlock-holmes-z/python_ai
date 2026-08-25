@@ -1,0 +1,19 @@
+# 可移植的 Conda 环境入口。
+# Conda 只管理 Python 解释器和 pip；项目依赖统一由 pyproject.toml 管理，
+# 避免同一个包同时被 Conda 和 pip 管理而产生版本冲突。
+name: python-ai
+
+channels:
+  # conda-forge 包更新及时、平台覆盖完整，适合 Python/AI 项目。
+  - conda-forge
+  # 禁止自动混入 defaults，避免同一环境混用不同 channel 的二进制包。
+  - nodefaults
+
+dependencies:
+  # 固定 Python minor，允许 Conda 自动获得 3.12 的最新安全补丁。
+  - python=3.12
+  - pip
+  - pip:
+      # 默认安装 FastAPI、现有示例使用的 aiohttp/NumPy，以及 dev 开发工具。
+      # backend/llm/rag/data/local-ai 均不会在当前阶段安装。
+      - -e .[dev]
