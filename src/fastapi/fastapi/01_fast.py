@@ -10,7 +10,9 @@ FastAPI 底层维护了一个类似于字典的APIRoute对象
 当请求发送给 uvicorn 服务器，将根据请求路径（键）找到对应的值（函数）进行调用，并且返回结果。
 
 """
+
 import uvicorn
+
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -42,10 +44,16 @@ def demo3(msg: int):
 # 根据名字匹配参数,如果没有设置默认值，参数不传就报错
 # /demo4?a=1&b=1&c=1
 @app.get("/demo4")
-def demo4(a, b, c: str = 'c'):
+def demo4(a, b, c: str = "c"):
     return {"a": a, "b": b, "c": c}
 
 
-if __name__ == '__main__':
+# bool，传1，true,True,on,yes都是true，0是false
+@app.get("/demo5")
+def demo5(a: bool):
+    return {"a": a}
+
+
+if __name__ == "__main__":
     # reload=true，热部署，文件修改自动更新
-    uvicorn.run(app='01_fast:app', host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run(app="01_fast:app", host="127.0.0.1", port=8000, reload=True)
