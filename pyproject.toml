@@ -42,6 +42,8 @@ backend = [
     "pydantic-settings==2.15.0", # 从环境变量/.env 读取类型安全配置，适合 FastAPI 配置管理。
     "sqlalchemy[asyncio]==2.0.52", # SQLAlchemy 2.x ORM 与异步数据库访问。
     "asyncpg==0.31.0",            # PostgreSQL 高性能异步驱动，仅学习 PostgreSQL 时安装。
+    "asyncmy==0.2.14",            # MySQL/MariaDB 异步驱动，配合 mysql+asyncmy 连接地址使用。
+    "pgvector==0.5.0",            # PostgreSQL vector 类型的 SQLAlchemy/asyncpg 集成，用于向量检索。
     "alembic==1.19.1",            # 数据库结构版本管理，与 SQLAlchemy 2.x 配套。
     "redis==8.1.0",               # 缓存、分布式锁、限流和消息场景的 Redis 客户端。
     "pyjwt[crypto]==2.13.0",      # JWT 签发和验签；crypto extra 提供非对称算法支持。

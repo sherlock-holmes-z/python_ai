@@ -1,7 +1,7 @@
 import uvicorn
 from pydantic import BaseModel, EmailStr, Field
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 
 
 class User(BaseModel):
@@ -22,9 +22,12 @@ class NewUser(BaseModel):
 app = FastAPI()
 
 
+# Query → 管 URL 后面 ? 带的参数，用在函数参数上
+# Field → 管 请求体 JSON 里的字段，用在 Pydantic 模型上
 @app.post("/user")
-def get_user(user: User):
+def get_user(user: User, desc: str = Query(default="用户", min_length=1, max_length=2)):
     # return str(user)
+    print(desc)
     return user.model_dump()  # 将user对象直接转json输出
 
 

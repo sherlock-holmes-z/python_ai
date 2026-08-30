@@ -1,0 +1,7 @@
+# 文件说明：Redis 无需建表，此脚本只验证连接并清理示例缓存，避免预置过期的业务真相。
+# Redis 没有关系数据库的建库/建表语句，商品真实数据始终以 MySQL 为准。
+# 使用 redis-cli 连接 192.168.100.102 后逐行执行本文件。
+PING
+SET fastapi_orm:bootstrap ready EX 300
+DEL fastapi_orm:product:1
+DEL fastapi_orm:product:2
