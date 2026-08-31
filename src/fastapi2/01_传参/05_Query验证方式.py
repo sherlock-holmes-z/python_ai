@@ -7,6 +7,7 @@
 from typing import Annotated
 
 import uvicorn
+
 from fastapi import FastAPI, Query
 
 app = FastAPI()

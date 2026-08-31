@@ -5,13 +5,14 @@
 验证失败时，FastAPI 会自动返回 422 Unprocessable Entity。
 """
 
-from enum import Enum
+from enum import StrEnum
 from typing import Annotated
 from uuid import UUID
 
 import uvicorn
+from pydantic import AfterValidator
+
 from fastapi import FastAPI, Path
-from pydantic import AfterValidator, BeforeValidator
 
 app = FastAPI()
 
@@ -52,7 +53,7 @@ def get_article(
 
 
 # 4. 枚举验证：只能匹配已定义的路径值，model_name只能传以下三个值
-class ModelName(str, Enum):
+class ModelName(StrEnum):
     alexnet = "alexnet"
     resnet = "resnet"
     lenet = "lenet"
@@ -73,7 +74,7 @@ def get_user(user_id: UUID):
 # 创建自定义的验证别名
 def validate(value):
     if value.startswith("@"):
-        raise ValueError('不能以@开头')
+        raise ValueError("不能以@开头")
     return value
 
 
