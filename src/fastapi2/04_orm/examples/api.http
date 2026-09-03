@@ -1,0 +1,59 @@
+# 本文件可由 JetBrains HTTP Client 或兼容插件执行，用于按业务顺序体验接口。
+@baseUrl = http://127.0.0.1:8000
+@ticketId = 1
+@messageId = 1
+### 数据库健康检查
+GET {{baseUrl}}/health
+
+### 创建工单
+POST {{baseUrl}}/api/v1/tickets
+Content-Type: application/json
+
+{
+  "customer_name": "李四",
+  "customer_email": "lisi@example.com",
+  "subject": "订单退款进度查询",
+  "priority": "medium"
+}
+
+### 分页查询工单
+GET {{baseUrl}}/api/v1/tickets?page=1&page_size=20&status=open
+
+### 关联查询工单和消息
+GET {{baseUrl}}/api/v1/tickets/{{ticketId}}
+
+### 修改工单
+PATCH {{baseUrl}}/api/v1/tickets/{{ticketId}}
+Content-Type: application/json
+
+{
+  "status": "processing",
+  "priority": "high"
+}
+
+### 新增工单消息
+POST {{baseUrl}}/api/v1/tickets/{{ticketId}}/messages
+Content-Type: application/json
+
+{
+  "sender_type": "agent",
+  "sender_name": "客服小王",
+  "content": "退款申请已提交支付渠道处理。"
+}
+
+### 分页查询工单消息
+GET {{baseUrl}}/api/v1/tickets/{{ticketId}}/messages?page=1&page_size=20
+
+### 修改消息
+PATCH {{baseUrl}}/api/v1/tickets/{{ticketId}}/messages/{{messageId}}
+Content-Type: application/json
+
+{
+  "content": "退款申请已提交，预计 1 到 3 个工作日到账。"
+}
+
+### 删除消息
+DELETE {{baseUrl}}/api/v1/tickets/{{ticketId}}/messages/{{messageId}}
+
+### 删除工单
+DELETE {{baseUrl}}/api/v1/tickets/{{ticketId}}

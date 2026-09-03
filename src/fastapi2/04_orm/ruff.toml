@@ -1,0 +1,6 @@
+# 继承仓库统一规则，并解决仓库中 src/fastapi 教学目录造成的第三方包识别歧义。
+extend = "../../../pyproject.toml"
+
+[lint.isort]
+known-first-party = ["app"]
+known-third-party = ["fastapi", "httpx", "pydantic", "pydantic_settings", "pytest", "sqlalchemy"]
