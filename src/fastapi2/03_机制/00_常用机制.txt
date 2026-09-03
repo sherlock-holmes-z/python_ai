@@ -1,0 +1,10 @@
+机制	适合做什么
+Middleware	全局日志、跨域、请求耗时、请求 ID
+Depends()	登录认证、权限、数据库会话、公共参数
+Exception Handler	统一异常和错误响应
+Lifespan	应用启动、关闭、资源初始化
+yield 依赖	请求级资源创建和释放
+BackgroundTasks	响应后执行轻量任务
+自定义 APIRoute	对一组路由做高级封装
+Router	按模块组织接口并共享依赖
+Response Model	统一校验和过滤响应数据

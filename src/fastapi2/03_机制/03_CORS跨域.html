@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS 跨域请求示例</title>
+</head>
+<body>
+    <h1>CORS 跨域请求示例</h1>
+
+    <button id="query-button" type="button">查询 FastAPI 接口</button>
+
+    <h2>响应结果</h2>
+    <pre id="result">尚未查询</pre>
+
+    <script>
+        const queryButton = document.querySelector("#query-button");
+        const result = document.querySelector("#result");
+
+        queryButton.addEventListener("click", async () => {
+            queryButton.disabled = true;
+            result.textContent = "正在查询……";
+
+            try {
+                const response = await fetch("http://127.0.0.1:8000/");
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status} ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                result.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                result.textContent = `请求失败：${error.message}`;
+            } finally {
+                queryButton.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
